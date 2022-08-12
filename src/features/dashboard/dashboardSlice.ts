@@ -72,6 +72,12 @@ export const selectDashboardStatistics = (state: RootState) => state.dashboard.s
 export const selectHighestStudentList = (state: RootState) => state.dashboard.highestStudentList;
 export const selectLowestStudentList = (state: RootState) => state.dashboard.lowestStudentList;
 export const selectRankingByCityList = (state: RootState) => state.dashboard.rankingByCityList;
+export const selectRankingStudentList = (state: RootState) =>
+  state.dashboard.statistics.studentCountByCityList.reduce((map: { [key: string]: number }, student: any, index) => {
+    map[student.id || 'unknown'] = index;
+    return map;
+  }, {});
+
 //Reducer
 const dashboardReducer = dashboardSlice.reducer;
 export default dashboardReducer;

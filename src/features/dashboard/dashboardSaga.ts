@@ -10,8 +10,9 @@ function* fetchStatistics() {
     call(studentApi.getAll, { _page: 1, _limit: 1, gender: 'female' }),
     call(studentApi.getAll, { _page: 1, _limit: 1, mark_gte: 8 }),
     call(studentApi.getAll, { _page: 1, _limit: 1, mark_lte: 5 }),
+    // call(studentApi.getAll, {}),// nếu để ở đây thì
   ]);
-  const responseList2: Array<ListResponse<Student>> = yield call(studentApi.getAll, {});
+  const responseList2: Array<ListResponse<Student>> = yield call(studentApi.getAll, { _sort: 'mark', _order: 'desc' });
   const statisticList: any = responseList.map((x) => x.pagination._totalRows);
   statisticList[statisticList.length] = responseList2;
   console.log(16, statisticList);
@@ -70,12 +71,7 @@ function* fetchRankingByCityList() {
 
 function* fetchDashboardData() {
   try {
-    yield all([
-      call(fetchStatistics),
-      call(fetchHighestStudentList),
-      call(fetchLowestStudentList),
-      call(fetchRankingByCityList),
-    ]);
+    yield all([call(fetchStatistics), call(fetchHighestStudentList), call(fetchLowestStudentList), call(fetchRankingByCityList)]);
     yield put(dashboardActions.fetchDataSuccess());
   } catch (error) {
     console.log('Failed to fetch data', error);

@@ -10,13 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import StudentFilter from '../components/StudentFilter';
 import StudentTable from '../components/StudentTable';
-import {
-  selectStudentFilter,
-  selectStudentList,
-  selectStudentLoading,
-  selectStudentPagination,
-  studentActions,
-} from '../studentSlice';
+import { selectStudentFilter, selectStudentList, selectStudentLoading, selectStudentPagination, studentActions } from '../studentSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,21 +89,11 @@ export default function ListPage() {
 
       <Box mb={3}>
         {/* Filter */}
-        <StudentFilter
-          cityList={cityList}
-          filter={filter}
-          onSearchChange={handleSearchChange}
-          onChange={handleFilterChange}
-        />
+        <StudentFilter cityList={cityList} filter={filter} onSearchChange={handleSearchChange} onChange={handleFilterChange} />
       </Box>
 
       {/* StudentTable */}
-      <StudentTable
-        studentList={studentList}
-        cityMap={cityMap}
-        onEdit={handleEditStudent}
-        onRemove={handleRemoveStudent}
-      />
+      <StudentTable studentList={studentList} cityMap={cityMap} onEdit={handleEditStudent} onRemove={handleRemoveStudent} />
       {/* Pagination    */}
       {/* totalPage = Math.ceil(totalRow/limit) */}
       <Box my={2} display="flex" justifyContent="center">

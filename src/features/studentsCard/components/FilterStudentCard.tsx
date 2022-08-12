@@ -2,7 +2,7 @@ import { Box, Button, FormControl, Grid, InputLabel, OutlinedInput, Select } fro
 import { Search } from '@material-ui/icons';
 import { MenuItem } from '@mui/material';
 import { City, ListParams } from 'models';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useRef } from 'react';
 
 export interface FilterStudentCardProps {
   onSearchChange: (newFilter: ListParams) => void;
@@ -12,6 +12,10 @@ export interface FilterStudentCardProps {
 }
 
 export function FilterStudentCard({ onSearchChange, filter, cityList, onChange }: FilterStudentCardProps) {
+  console.log('filter', filter.name_like);
+
+  const inputRef = useRef<HTMLInputElement>();
+
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newFilter: ListParams = {
       ...filter,
@@ -38,16 +42,38 @@ export function FilterStudentCard({ onSearchChange, filter, cityList, onChange }
     };
     onChange(newFilter);
   };
+  const handleClearFilter = () => {
+    const newFilter: ListParams = {
+      ...filter,
+      _page: 1,
+      _sort: undefined,
+      _order: undefined,
+      city: undefined,
+      name_like: '',
+    };
+    console.log('inputRef', inputRef.current);
+    onChange(newFilter);
+    inputRef.current && (inputRef.current.value = '');
+  };
 
   return (
-    <Box>
+    <>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <FormControl fullWidth variant="outlined" size="small">
             <InputLabel htmlFor="searchByName"> Search by name</InputLabel>
-            <OutlinedInput label="searchByName" id="searchByName" endAdornment={<Search />} onChange={handleSearchChange} />
+
+            <OutlinedInput
+              label="searchByName"
+              id="searchByName"
+              endAdornment={<Search />}
+              defaultValue={filter.name_like || ''}
+              onChange={handleSearchChange}
+              inputRef={inputRef}
+            />
           </FormControl>
         </Grid>
+
         {/* Filter by city */}
         <Grid item xs={12} md={3}>
           <FormControl fullWidth variant="outlined" size="small">
@@ -91,11 +117,11 @@ export function FilterStudentCard({ onSearchChange, filter, cityList, onChange }
         </Grid>
         {/* Clear */}
         <Grid item xs={12} md={1}>
-          <Button variant="outlined" color="primary" fullWidth>
+          <Button variant="outlined" color="primary" fullWidth onClick={handleClearFilter}>
             Clear
           </Button>
         </Grid>
       </Grid>
-    </Box>
+    </>
   );
 }

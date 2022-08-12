@@ -67,11 +67,7 @@ export default function Dashboard() {
           <SkeletonStatistic />
         ) : (
           <Grid item xs={12} md={6} lg={3} xl={3}>
-            <StatisticItem
-              icon={<ManIcon fontSize="large" color="primary" />}
-              label="male"
-              value={statistics.maleCount}
-            ></StatisticItem>
+            <StatisticItem icon={<ManIcon fontSize="large" color="primary" />} label="male" value={statistics.maleCount}></StatisticItem>
           </Grid>
         )}
         {loading ? (
@@ -147,7 +143,7 @@ export default function Dashboard() {
         <Typography variant="h4">Ranking by cities</Typography>
         <Box mt={2}>
           <Grid container spacing={3}>
-            {rankingByCityList.map((ranking) => (
+            {rankingByCityList.map((ranking: any) => (
               <>
                 {!loading ? (
                   <Grid key={ranking.cityId} item xs={12} md={6} lg={3} xl={3}>

@@ -33,10 +33,7 @@ const schema = yup
       .max(10, 'Max is 10.')
       .typeError('please enter a valid number')
       .required('Please enter mark'),
-    gender: yup
-      .string()
-      .oneOf(['male', 'female'], 'Please select either "male" or "female"')
-      .required('Please select gender.'),
+    gender: yup.string().oneOf(['male', 'female'], 'Please select either "male" or "female"').required('Please select gender.'),
     city: yup.string().required('Please select city.'),
   })
   .required();

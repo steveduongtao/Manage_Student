@@ -14,6 +14,7 @@ import {
   TableRow,
 } from '@material-ui/core';
 import Avatar from '@mui/material/Avatar';
+import { NoDataToShow } from 'components/Common/NoDataToShow';
 import { City, Student } from 'models';
 import { useState } from 'react';
 import { capitalizeString, getMarkColor, stringAvatar } from 'utils';
@@ -62,7 +63,7 @@ export default function StudentTable({ studentList, cityMap, onRemove, onEdit }:
             </TableRow>
           </TableHead>
           <TableBody>
-            {studentList.length === 0 && <em>No data to show</em>}
+            {studentList.length === 0 && <NoDataToShow />}
             {studentList.map((student) => (
               <TableRow key={student.id}>
                 <TableCell>{student.id}</TableCell>

@@ -1,11 +1,12 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { LinearProgress } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
 import { useAppSelector } from 'app/hooks';
+import { selectCityList } from 'features/city/citySlice';
 import { ListParams } from 'models';
-import React, { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterStudentCard } from '../components/FilterStudentCard';
-import Pagination from '@mui/material/Pagination';
 import { StudentCardLayout } from '../components/StudentCardLayout';
 import {
   selectStudentCardFilter,
@@ -14,8 +15,6 @@ import {
   selectStudentCardPagination,
   studentCardActions,
 } from '../studentCardSlice';
-import { selectCityList } from 'features/city/citySlice';
-import { studentActions } from 'features/student/studentSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,10 +31,10 @@ export default function ListCard() {
   const loading = useAppSelector(selectStudentCardLoading);
   const filter = useAppSelector(selectStudentCardFilter);
   const pagination = useAppSelector(selectStudentCardPagination);
-  console.log('pagination studentcard', pagination);
+
   const studentCardList = useAppSelector(selectStudentCardList);
   const cityList = useAppSelector(selectCityList);
-
+  console.log('cityList', cityList);
   const classes = useStyles();
 
   const dispatch = useDispatch();

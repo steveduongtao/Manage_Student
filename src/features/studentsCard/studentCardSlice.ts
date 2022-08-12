@@ -14,7 +14,7 @@ const initialState: StudentCardState = {
   list: [],
   filter: {
     _page: 1,
-    _limit: 8,
+    _limit: 20,
   },
   pagination: {
     _page: 1,
