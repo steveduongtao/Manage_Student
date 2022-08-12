@@ -44,12 +44,7 @@ const Charts = ({ statistics, rankingByCityList }) => {
                     {
                       label: `Tổng số lượng học sinh: ${statistics.studentCountByCityList.length}`,
                       backgroundColor: '#18366a',
-                      data: [
-                        studentCountInCity('hcm'),
-                        studentCountInCity('hn'),
-                        studentCountInCity('dn'),
-                        studentCountInCity('pt'),
-                      ],
+                      data: [studentCountInCity('hcm'), studentCountInCity('hn'), studentCountInCity('dn'), studentCountInCity('pt')],
                     },
                   ],
                   options: {},
@@ -74,12 +69,7 @@ const Charts = ({ statistics, rankingByCityList }) => {
                   borderColor: 'rgba(220, 220, 220, 1)',
                   pointBackgroundColor: 'rgba(220, 220, 220, 1)',
                   pointBorderColor: '#fff',
-                  data: [
-                    studentCountInCity('hcm'),
-                    studentCountInCity('hn'),
-                    studentCountInCity('dn'),
-                    studentCountInCity('pt'),
-                  ],
+                  data: [studentCountInCity('hcm'), studentCountInCity('hn'), studentCountInCity('dn'), studentCountInCity('pt')],
                 },
                 {
                   label: 'Highest Student mark/city',
@@ -101,7 +91,7 @@ const Charts = ({ statistics, rankingByCityList }) => {
                   borderColor: 'violet',
                   pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                   pointBorderColor: '#fff',
-                  data: [10, 5, 6, 8],
+                  data: [statistics.maleHcm, statistics.maleHn, statistics.maleDn, statistics.malePt],
                 },
                 {
                   label: 'Female/City',
@@ -109,7 +99,7 @@ const Charts = ({ statistics, rankingByCityList }) => {
                   borderColor: 'green',
                   pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                   pointBorderColor: '#fff',
-                  data: [10, 8, 6, 9],
+                  data: [statistics.femaleHcm, statistics.femaleHn, statistics.femaleDn, statistics.femalePt],
                 },
               ],
             }}

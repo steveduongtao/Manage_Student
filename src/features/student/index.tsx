@@ -1,6 +1,7 @@
 import { Box } from '@material-ui/core';
 import { useAppDispatch } from 'app/hooks';
 import { cityActions } from 'features/city/citySlice';
+import { dashboardActions } from 'features/dashboard/dashboardSlice';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AddEditPage from './pages/AddEditPage';
@@ -11,6 +12,7 @@ export default function StudentsFeather() {
 
   useEffect(() => {
     dispatch(cityActions.fetchCityList());
+    dispatch(dashboardActions.fetchData());
   }, [dispatch]);
   return (
     <Box>

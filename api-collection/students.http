@@ -6,6 +6,8 @@
 GET {{baseUrl}}/students?_page=1&_limit=10&_sort=mark&_order=desc
 
 ###
+#@>get>city>gender
+GET {{baseUrl}}/students?_page=1&_limit=1&_order=desc&city=hn&gender=male
 
 # @name getStudentById
 GET {{baseUrl}}/students/u6V7vww

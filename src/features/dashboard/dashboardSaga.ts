@@ -10,20 +10,49 @@ function* fetchStatistics() {
     call(studentApi.getAll, { _page: 1, _limit: 1, gender: 'female' }),
     call(studentApi.getAll, { _page: 1, _limit: 1, mark_gte: 8 }),
     call(studentApi.getAll, { _page: 1, _limit: 1, mark_lte: 5 }),
-    // call(studentApi.getAll, {}),// nếu để ở đây thì
+    call(studentApi.getAll, { _page: 1, _limit: 1, city: 'hn', gender: 'male' }),
+    call(studentApi.getAll, { _page: 1, _limit: 1, city: 'hn', gender: 'female' }),
+    call(studentApi.getAll, { _page: 1, _limit: 1, city: 'hcm', gender: 'male' }),
+    call(studentApi.getAll, { _page: 1, _limit: 1, city: 'hcm', gender: 'female' }),
+    call(studentApi.getAll, { _page: 1, _limit: 1, city: 'pt', gender: 'male' }),
+    call(studentApi.getAll, { _page: 1, _limit: 1, city: 'pt', gender: 'female' }),
+    call(studentApi.getAll, { _page: 1, _limit: 1, city: 'dn', gender: 'male' }),
+    call(studentApi.getAll, { _page: 1, _limit: 1, city: 'dn', gender: 'female' }),
   ]);
   const responseList2: Array<ListResponse<Student>> = yield call(studentApi.getAll, { _sort: 'mark', _order: 'desc' });
   const statisticList: any = responseList.map((x) => x.pagination._totalRows);
   statisticList[statisticList.length] = responseList2;
   console.log(16, statisticList);
 
-  const [maleCount, femaleCount, highMarkCount, lowMarkCount, studentCountByCityList] = statisticList;
+  const [
+    maleCount,
+    femaleCount,
+    highMarkCount,
+    lowMarkCount,
+    maleHn,
+    femaleHn,
+    maleHcm,
+    femaleHcm,
+    malePt,
+    femalePt,
+    maleDn,
+    femaleDn,
+    studentCountByCityList,
+  ] = statisticList;
   yield put(
     dashboardActions.setStatistics({
       maleCount,
       femaleCount,
       highMarkCount,
       lowMarkCount,
+      maleHn,
+      femaleHn,
+      maleHcm,
+      femaleHcm,
+      malePt,
+      femalePt,
+      maleDn,
+      femaleDn,
       studentCountByCityList,
     })
   );

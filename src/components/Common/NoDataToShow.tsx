@@ -6,7 +6,7 @@ export interface NoDataToShowProps {}
 export function NoDataToShow(props: NoDataToShowProps) {
   return (
     <TableRow>
-      <TableCell colSpan={6} style={{ textAlign: 'center' }}>
+      <TableCell colSpan={7} style={{ textAlign: 'center' }}>
         <em>No data to show</em>
       </TableCell>
     </TableRow>

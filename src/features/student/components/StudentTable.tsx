@@ -14,7 +14,9 @@ import {
   TableRow,
 } from '@material-ui/core';
 import Avatar from '@mui/material/Avatar';
+import { useAppSelector } from 'app/hooks';
 import { NoDataToShow } from 'components/Common/NoDataToShow';
+import { selectRankingStudentList } from 'features/dashboard/dashboardSlice';
 import { City, Student } from 'models';
 import { useState } from 'react';
 import { capitalizeString, getMarkColor, stringAvatar } from 'utils';
@@ -30,6 +32,8 @@ export interface StudentTableProps {
 export default function StudentTable({ studentList, cityMap, onRemove, onEdit }: StudentTableProps) {
   const [open, setOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student>();
+
+  const ranking = useAppSelector(selectRankingStudentList);
 
   const handleClose = () => {
     setOpen(false);
@@ -59,6 +63,7 @@ export default function StudentTable({ studentList, cityMap, onRemove, onEdit }:
               <TableCell>Gender</TableCell>
               <TableCell>Mark</TableCell>
               <TableCell>City</TableCell>
+              <TableCell>Ranking</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -78,6 +83,9 @@ export default function StudentTable({ studentList, cityMap, onRemove, onEdit }:
                   </Box>
                 </TableCell>
                 <TableCell>{cityMap[student.city]?.name || 'Unknow'}</TableCell>
+                <TableCell>
+                  <Box fontWeight="bold">{ranking[student.id || 'Unknown']}</Box>
+                </TableCell>
                 <TableCell align="right">
                   <Button size="small" color="primary" onClick={() => onEdit?.(student)}>
                     Edit

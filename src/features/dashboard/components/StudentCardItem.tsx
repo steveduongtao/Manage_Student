@@ -5,11 +5,10 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { useAppSelector } from 'app/hooks';
 import { selectCityMap } from 'features/city/citySlice';
-import { City, Student } from 'models';
+import { Student } from 'models';
 import { capitalizeString, getMarkColor, stringAvatar } from 'utils';
 export interface IStudentCardItemProps {
   studentCard: Student;

@@ -7,6 +7,14 @@ export interface DashboardStatistics {
   femaleCount: number;
   highMarkCount: number;
   lowMarkCount: number;
+  maleHn: number;
+  femaleHn: number;
+  maleHcm: number;
+  femaleHcm: number;
+  malePt: number;
+  femalePt: number;
+  maleDn: number;
+  femaleDn: number;
   studentCountByCityList: Student[];
 }
 
@@ -30,6 +38,14 @@ const initialState: DashboardState = {
     femaleCount: 0,
     highMarkCount: 0,
     lowMarkCount: 0,
+    maleHn: 0,
+    femaleHn: 0,
+    maleHcm: 0,
+    femaleHcm: 0,
+    malePt: 0,
+    femalePt: 0,
+    maleDn: 0,
+    femaleDn: 0,
     studentCountByCityList: [],
   },
   highestStudentList: [],
@@ -74,7 +90,7 @@ export const selectLowestStudentList = (state: RootState) => state.dashboard.low
 export const selectRankingByCityList = (state: RootState) => state.dashboard.rankingByCityList;
 export const selectRankingStudentList = (state: RootState) =>
   state.dashboard.statistics.studentCountByCityList.reduce((map: { [key: string]: number }, student: any, index) => {
-    map[student.id || 'unknown'] = index;
+    map[student.id || 'unknown'] = index + 1;
     return map;
   }, {});
 
