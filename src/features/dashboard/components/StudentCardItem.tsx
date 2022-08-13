@@ -9,10 +9,13 @@ import Typography from '@mui/material/Typography';
 import { useAppSelector } from 'app/hooks';
 import { selectCityMap } from 'features/city/citySlice';
 import { Student } from 'models';
+import { useState } from 'react';
 import { capitalizeString, getMarkColor, stringAvatar } from 'utils';
 export interface IStudentCardItemProps {
   studentCard: Student;
   statistic: { [key: string]: number };
+  onEdit?: (student: Student) => void;
+  onRemove?: (student: Student) => void;
 }
 
 const useStyles = makeStyles((them) => ({
@@ -23,10 +26,11 @@ const useStyles = makeStyles((them) => ({
   },
 }));
 
-export function StudentCardItem({ studentCard, statistic }: IStudentCardItemProps) {
+export function StudentCardItem({ onRemove, onEdit, studentCard, statistic }: IStudentCardItemProps) {
   const classes = useStyles();
 
   const selectCity = useAppSelector(selectCityMap);
+
   return (
     <Grid item xs={12} md={6} lg={3} xl={3}>
       <Card variant="outlined">
@@ -53,10 +57,23 @@ export function StudentCardItem({ studentCard, statistic }: IStudentCardItemProp
           </Box>
         </CardContent>
         <CardActions className={classes.flex_align}>
-          <Button variant="outlined" size="small">
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => {
+              onEdit?.(studentCard);
+            }}
+          >
             Edit
           </Button>
-          <Button variant="outlined" color="error" size="small">
+          <Button
+            variant="outlined"
+            color="error"
+            size="small"
+            onClick={() => {
+              onRemove?.(studentCard);
+            }}
+          >
             Delete
           </Button>
           <Avatar variant="rounded" sx={{ bgcolor: 'red', fontSize: '15px', height: '31px' }}>
