@@ -8,7 +8,6 @@ export interface StudentState {
   filter: ListParams;
   pagination: PaginationParams;
 }
-
 const initialState: StudentState = {
   loading: false,
   list: [],
@@ -22,7 +21,6 @@ const initialState: StudentState = {
     _totalRows: 15,
   },
 };
-
 const studentSlice = createSlice({
   name: 'student',
   initialState,

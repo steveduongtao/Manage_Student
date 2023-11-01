@@ -23,8 +23,8 @@ export default function LoginPage() {
   const dispatch = useAppDispatch();
   const isLogging = useAppSelector(selectorLogging);
   const handleLoginClick = () => {
-    //TODO: Get username , password from loigin form
-
+    //TODO: Get username , password from login
+    //TODO: Make list of frontsize
     dispatch(
       authActions.login({
         username: '',

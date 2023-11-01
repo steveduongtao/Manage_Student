@@ -25,7 +25,6 @@ export default function AddEditPage() {
     })();
   }, [studentId]);
   console.log(student);
-
   const handleStudentFormSubmit = async (formValue: Student) => {
     //TODO: Handle submit here, call Api to add/update student.
     if (isEdit) {

@@ -5,13 +5,10 @@ import cityReducer from 'features/city/citySlice';
 import dashboardReducer from 'features/dashboard/dashboardSlice';
 import studentReducer from 'features/student/studentSlice';
 import studentCardReducer from 'features/studentsCard/studentCardSlice';
-
-import counterReducer from '../features/counter/counterSlice';
 import rootSaga from './rootSaga';
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
   auth: authReducer,
   dashboard: dashboardReducer,
   student: studentReducer,

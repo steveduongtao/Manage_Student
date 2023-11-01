@@ -2,7 +2,6 @@ import { Notfound, PrivateRoute } from 'components/Common';
 import { AdminLayou } from 'components/Layout';
 import LoginPage from 'features/auth/pages/LoginPage';
 import Dashboard from 'features/dashboard';
-import Charts from 'features/dashboard/chart/Charts';
 import Students from 'features/student';
 import StudentsCard from 'features/studentsCard';
 import { Route, Routes } from 'react-router-dom';
@@ -21,7 +20,6 @@ function App() {
             <Route path="/admin/*" element={<StudentsCard />} />
           </Route>
         </Route>
-
         <Route path="*" element={<Notfound />}></Route>
       </Routes>
     </>
