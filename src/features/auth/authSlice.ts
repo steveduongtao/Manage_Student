@@ -14,8 +14,8 @@ export interface AuthState {
   currentUser?: User;
 }
 const initialState: AuthState = {
-  isLoggedIn: false,
-  logging: false,
+  isLoggedIn: Boolean(localStorage.getItem('access_token')),
+  logging: Boolean(localStorage.getItem('access_token')),
   currentUser: undefined,
 };
 

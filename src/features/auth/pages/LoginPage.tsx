@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { authActions, selectorLogging } from '../authSlice';
+import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +23,7 @@ export default function LoginPage() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const isLogging = useAppSelector(selectorLogging);
+  console.log('isLoginOut', isLogging);
   const handleLoginClick = () => {
     //TODO: Get username , password from login
     //TODO: Make list of frontsize
@@ -34,6 +36,11 @@ export default function LoginPage() {
     );
   };
 
+  //Used to check Logged In?
+  useEffect(() => {
+    const isLoggedIn = Boolean(localStorage.getItem('access_token'));
+    isLoggedIn ? navigate('/admin/dashboard') : navigate('/login');
+  }, []);
   return (
     <div className={classes.root}>
       <Paper elevation={2} className={classes.paper}>
